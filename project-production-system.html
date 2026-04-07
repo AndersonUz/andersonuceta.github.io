@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Standardization System · Anderson Uceta</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.15s; }
+    .back-link:hover { color: var(--blue); }
+    .proj-category { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .cat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    .proj-title { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 500; color: var(--text); letter-spacing: -0.5px; margin-bottom: 1rem; }
+    .proj-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+    .meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); }
+    .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+    .meta-value { font-size: 13px; color: var(--text-muted); }
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 3rem; }
+    .gallery img { width: 100%; border-radius: 6px; border: 0.5px solid var(--border); object-fit: cover; aspect-ratio: 16/9; display: block; transition: border-color 0.2s; }
+    .gallery img:first-child { grid-column: span 2; aspect-ratio: 21/9; }
+    .gallery img:hover { border-color: var(--blue); }
+    .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start; }
+    .prose h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text); font-weight: 500; margin: 2rem 0 0.8rem; }
+    .prose h2:first-child { margin-top: 0; }
+    .prose p { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 1rem; }
+    .prose ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+    .prose ul li { font-size: 14px; color: var(--text-muted); line-height: 1.8; padding-left: 1rem; position: relative; margin-bottom: 4px; }
+    .prose ul li::before { content: '//'; position: absolute; left: 0; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 10px; top: 4px; }
+    .sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
+    .sidebar-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 12px; }
+    .sidebar-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--blue); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .stack { display: flex; flex-wrap: wrap; gap: 5px; }
+    .stag { background: #0a0a18; border-radius: 2px; padding: 3px 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); border: 0.5px solid #1a1a30; }
+    .module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 1rem; }
+    .module-item { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 5px; padding: 7px 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); }
+    .confidential-note { background: #1a1200; border: 0.5px solid #3a2a00; border-radius: 6px; padding: 8px 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #8a6a00; margin-top: 1rem; }
+    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } .gallery img:first-child { aspect-ratio: 16/9; } .sidebar { position: static; } .module-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Anderson Uceta</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </nav>
+
+  <div class="page">
+    <section class="section">
+      <div class="container">
+        <a class="back-link" href="projects.html">← Back to projects</a>
+
+        <div style="margin-bottom:3rem">
+          <div class="proj-category"><span class="cat-dot"></span>Software · Industry 4.0</div>
+          <h1 class="proj-title">Production Standardization System</h1>
+          <p class="proj-subtitle">End-to-end production management platform with live order tracking, KPI dashboards, and a route optimization algorithm that calculates the most efficient way to distribute production across manufacturing lines.</p>
+          <div class="meta-row">
+            <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">Confidential (large enterprise)</div></div>
+            <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2024</div></div>
+            <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">Software · Industry 4.0 · Microsoft Platform</div></div>
+            <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Developer & Automation Engineer</div></div>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <img src="assets/projects/production-system/img2.png" alt="Main dashboard">
+          <img src="assets/projects/production-system/img1.png" alt="KPI metrics - compliance, assertiveness, deviation">
+          <img src="assets/projects/production-system/img3.png" alt="Order tracking view">
+          <img src="assets/projects/production-system/img4.png" alt="Orders list with status">
+          <img src="assets/projects/production-system/img5.png" alt="Reports module">
+        </div>
+
+        <div class="content-grid">
+          <div class="prose">
+            <h2>// The Problem</h2>
+            <p>The client — a large enterprise manufacturing operation — lacked a unified system for creating, tracking, and reporting production orders. Each plant used its own methods, making it impossible to compare performance, standardize processes, or optimize how production was distributed across available lines.</p>
+
+            <h2>// The Solution</h2>
+            <p>I built a full-featured production management application using the Microsoft Power Platform, leveraging existing infrastructure the company already had (Microsoft 365 and SharePoint). The app was designed to cover the entire production lifecycle — from order creation to completion — with real-time visibility at every step.</p>
+
+            <h2>// App Modules</h2>
+            <div class="module-grid">
+              <div class="module-item">📋 Current Production</div>
+              <div class="module-item">🔮 Simulate Routes</div>
+              <div class="module-item">📦 Order Management</div>
+              <div class="module-item">🏭 Inventory</div>
+              <div class="module-item" style="grid-column:span 2">📊 Reports & KPIs</div>
+            </div>
+
+            <h2>// Route Optimization Algorithm</h2>
+            <p>The most technically complex feature is the production route optimizer. Given a production plan, the algorithm evaluates the available manufacturing lines and calculates the optimal distribution of orders — minimizing idle time and maximizing throughput. Operators can run simulations before committing to a production schedule, comparing scenarios in real time.</p>
+
+            <h2>// KPIs & Reporting</h2>
+            <p>The platform tracks three core operational KPIs automatically: compliance (plan vs actual), assertiveness (forecast accuracy), and deviation (units off-target). Reports can be filtered by date range and exported. A dedicated reporting module covers order reports and efficiency reports by line.</p>
+
+            <h2>// Technical Architecture</h2>
+            <ul>
+              <li>Canvas Power App as the main user interface across devices</li>
+              <li>SharePoint Lists as the operational database (orders, inventory, production records)</li>
+              <li>Power Automate flows for notifications, state transitions, and automated calculations</li>
+              <li>DAX formulas and custom logic for KPI computation inside the app</li>
+            </ul>
+          </div>
+
+          <div class="sidebar">
+            <div class="sidebar-card">
+              <div class="sidebar-title">Tech Stack</div>
+              <div class="stack">
+                <span class="stag">Power Apps (Canvas)</span>
+                <span class="stag">SharePoint Lists</span>
+                <span class="stag">Power Automate</span>
+                <span class="stag">DAX</span>
+                <span class="stag">Microsoft 365</span>
+              </div>
+            </div>
+            <div class="sidebar-card">
+              <div class="sidebar-title">Features</div>
+              <div class="stack">
+                <span class="stag">Route Optimization</span>
+                <span class="stag">Live Order Tracking</span>
+                <span class="stag">KPI Dashboard</span>
+                <span class="stag">Production Simulation</span>
+                <span class="stag">Inventory Control</span>
+                <span class="stag">Automated Reports</span>
+              </div>
+            </div>
+            <div class="confidential-note">⚠ Client name withheld by confidentiality agreement. Screenshots have been anonymized.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>Built by Anderson Uceta · <a href="https://github.com/andersonuceta" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a></p>
+  </footer>
+  <script>function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}</script>
+</body>
+</html>
