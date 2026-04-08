@@ -4,39 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects · Anderson Uceta</title>
-  <meta name="description" content="Industrial automation, software, and robotics projects by Anderson Uceta.">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .page-hero { padding: 4rem 0 2rem; border-bottom: 0.5px solid var(--border); }
-    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .filter-btn { padding: 6px 16px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px; cursor: pointer; border: 0.5px solid var(--border2); background: transparent; color: var(--text-muted); transition: all 0.15s; }
-    .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
-    .filter-btn.active { background: var(--blue-dark); color: #e8e8ff; border-color: var(--blue); }
-    .filter-btn.f-ind.active  { background: #0a1f17; color: var(--green);  border-color: #1a4a35; }
-    .filter-btn.f-soft.active { background: #0a0a2a; color: var(--blue);   border-color: #2a2a5a; }
+    .page-hero { background: var(--navy); padding: 4rem 0 3rem; position: relative; overflow: hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px); background-size:30px 30px; }
+    .page-hero .accent-bar { position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--amber); }
+    .page-hero-inner { position:relative; z-index:1; }
+    .page-hero .section-eyebrow { color: var(--amber); }
+    .page-hero .section-title { color: #fff; margin-bottom: 0; }
+
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+    .filter-btn {
+      padding: 6px 16px; border-radius: 2px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; border: 1.5px solid var(--border-dark);
+      background: transparent; color: var(--text-muted); transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--amber); color: var(--amber); }
+    .filter-btn.active { background: var(--amber); color: var(--navy); border-color: var(--amber); }
+    .filter-btn.f-soft.active { background: var(--blue-eng); color: #fff; border-color: var(--blue-eng); }
+
     .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .proj-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; text-decoration: none; }
-    .proj-card:hover { border-color: var(--blue-dark); transform: translateY(-2px); }
     .proj-card[data-hidden="true"] { display: none; }
-    .proj-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #0a0a18; display: block; border-bottom: 0.5px solid var(--border); }
-    .proj-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
-    .proj-type { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
-    .type-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-    .pt-ind  { color: var(--green);  } .pt-ind .type-dot  { background: var(--green); }
-    .pt-soft { color: var(--blue);   } .pt-soft .type-dot { background: var(--blue); }
-    .proj-name { font-size: 15px; font-weight: 500; color: #c8cadc; margin-bottom: 6px; }
-    .proj-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; flex: 1; }
-    .stack { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
-    .stag { background: #0a0a18; border-radius: 2px; padding: 2px 7px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); border: 0.5px solid #1a1a30; }
-    .proj-footer { padding-top: 10px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .proj-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); }
-    .proj-arrow { font-size: 13px; color: var(--text-dim); }
+
     @media (max-width: 640px) { .proj-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <nav>
-    <a href="index.html" class="nav-logo">Anderson Uceta</a>
+    <a href="index.html" class="nav-logo">ANDERSON <span>UCETA</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
@@ -47,43 +44,55 @@
   </nav>
 
   <div class="page">
-    <section class="section page-hero">
-      <div class="container">
-        <div class="eyebrow">// projects</div>
-        <h1 class="section-title">All Projects</h1>
+    <section class="page-hero">
+      <div class="accent-bar"></div>
+      <div class="container page-hero-inner">
+        <div class="section-header" style="margin-bottom:0.8rem">
+          <div class="section-eyebrow">Engineering work</div>
+          <div class="section-rule" style="background:var(--navy-dim)"></div>
+        </div>
+        <h1 class="section-title" style="color:#fff;margin-bottom:2rem">All Projects</h1>
         <div class="filter-bar">
           <button class="filter-btn active" onclick="filter('all',this)">All</button>
-          <button class="filter-btn f-ind"  onclick="filter('industrial',this)">Industrial</button>
+          <button class="filter-btn"        onclick="filter('industrial',this)">Industrial</button>
           <button class="filter-btn f-soft" onclick="filter('software',this)">Software</button>
         </div>
+      </div>
+    </section>
+
+    <section class="light-section">
+      <div class="container">
         <div class="proj-grid" id="projGrid">
 
           <a class="proj-card" href="project-biscuit-inspector.html" data-cat="industrial">
+            <div class="proj-card-bar"></div>
             <img class="proj-thumb" src="assets/projects/biscuit-inspector/img4.png" alt="Biscuit Package Inspector">
             <div class="proj-body">
-              <div class="proj-type pt-ind"><span class="type-dot"></span>Industrial · Machine Vision</div>
+              <div class="proj-type">Industrial · Machine Vision</div>
               <div class="proj-name">Biscuit Package Inspector</div>
-              <div class="proj-desc">Automated dual-inspection system reducing secondary packaging defects by 99% using computer vision and weight verification on a production line.</div>
+              <div class="proj-desc">Automated dual-inspection system reducing secondary packaging defects by 99% through computer vision and weight verification on a live production line.</div>
               <div class="stack"><span class="stag">Cognex InSight 2800</span><span class="stag">Siemens S7-1500</span><span class="stag">Check Weigher</span><span class="stag">Safety Curtains</span></div>
               <div class="proj-footer"><span class="proj-meta">CMI · 2024</span><span class="proj-arrow">→</span></div>
             </div>
           </a>
 
           <a class="proj-card" href="project-connect4-robot.html" data-cat="industrial">
+            <div class="proj-card-bar"></div>
             <img class="proj-thumb" src="assets/projects/connect4-robot/img2.png" alt="Connect 4 AI Robot">
             <div class="proj-body">
-              <div class="proj-type pt-ind"><span class="type-dot"></span>Robotics · AI</div>
+              <div class="proj-type">Robotics · AI</div>
               <div class="proj-name">Connect 4 AI Robot</div>
-              <div class="proj-desc">A robotic arm that plays Connect 4 strategically using a Python AI algorithm, translating game moves via serial communication to an Arduino-controlled arm.</div>
-              <div class="stack"><span class="stag">Python</span><span class="stag">Arduino</span><span class="stag">MATLAB</span><span class="stag">Pygame</span><span class="stag">Kinematics</span></div>
+              <div class="proj-desc">A robotic arm that plays Connect 4 strategically using a Python AI algorithm, translating game moves via serial to an Arduino-controlled arm with MATLAB-computed kinematics.</div>
+              <div class="stack"><span class="stag">Python</span><span class="stag">Arduino Mega</span><span class="stag">MATLAB</span><span class="stag">Pygame</span><span class="stag">Kinematics</span></div>
               <div class="proj-footer"><span class="proj-meta">Academic · 2024</span><span class="proj-arrow">→</span></div>
             </div>
           </a>
 
           <a class="proj-card" href="project-production-system.html" data-cat="software">
-            <img class="proj-thumb" src="assets/projects/production-system/img2.png" alt="Production Standardization System">
+            <div class="proj-card-bar blue"></div>
+            <img class="proj-thumb" src="assets/projects/production-system/img2.png" alt="Production System">
             <div class="proj-body">
-              <div class="proj-type pt-soft"><span class="type-dot"></span>Software · Industry 4.0</div>
+              <div class="proj-type blue">Software · Industry 4.0</div>
               <div class="proj-name">Production Standardization System</div>
               <div class="proj-desc">End-to-end production management platform with live order tracking, KPI dashboards, and a route optimization algorithm for manufacturing lines.</div>
               <div class="stack"><span class="stag">Power Apps</span><span class="stag">SharePoint</span><span class="stag">Power Automate</span><span class="stag">DAX</span></div>
@@ -92,11 +101,12 @@
           </a>
 
           <a class="proj-card" href="project-energy-monitoring.html" data-cat="software">
-            <img class="proj-thumb" src="assets/projects/energy-monitoring/img1.png" alt="Industrial Energy Monitoring">
+            <div class="proj-card-bar blue"></div>
+            <img class="proj-thumb" src="assets/projects/energy-monitoring/img1.png" alt="Energy Monitoring">
             <div class="proj-body">
-              <div class="proj-type pt-soft"><span class="type-dot"></span>Software · IIoT</div>
+              <div class="proj-type blue">Software · IIoT</div>
               <div class="proj-name">Industrial Energy Monitoring System</div>
-              <div class="proj-desc">Real-time energy monitoring platform integrating Schneider meters via BACnet, storing electrical data in MySQL and visualizing it through a custom web dashboard.</div>
+              <div class="proj-desc">Real-time energy monitoring platform integrating Schneider meters via BACnet, storing electrical data in MySQL and visualizing through a custom web dashboard.</div>
               <div class="stack"><span class="stag">Python</span><span class="stag">BACnet/IP</span><span class="stag">MySQL</span><span class="stag">PHP</span><span class="stag">Schneider</span></div>
               <div class="proj-footer"><span class="proj-meta">CMI · 2024</span><span class="proj-arrow">→</span></div>
             </div>
@@ -108,16 +118,16 @@
   </div>
 
   <footer>
-    <p>Built by Anderson Uceta · <a href="https://github.com/andersonuceta" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a></p>
+    <p>Anderson Uceta · <a href="https://github.com/andersonuz" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a> · Santo Domingo, DR</p>
   </footer>
 
   <script>
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
-    function filter(cat, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+    function filter(cat,btn){
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      document.querySelectorAll('.proj-card').forEach(card => {
-        card.dataset.hidden = (cat === 'all' || card.dataset.cat === cat) ? 'false' : 'true';
+      document.querySelectorAll('.proj-card').forEach(card=>{
+        card.dataset.hidden=(cat==='all'||card.dataset.cat===cat)?'false':'true';
       });
     }
   </script>

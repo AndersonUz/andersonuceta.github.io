@@ -6,43 +6,29 @@
   <title>Industrial Energy Monitoring System · Anderson Uceta</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.15s; }
-    .back-link:hover { color: var(--blue); }
-    .proj-category { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .cat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
-    .proj-title { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 500; color: var(--text); letter-spacing: -0.5px; margin-bottom: 1rem; }
-    .proj-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
-    .meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); }
-    .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
-    .meta-value { font-size: 13px; color: var(--text-muted); }
-    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 3rem; }
-    .gallery img { width: 100%; border-radius: 6px; border: 0.5px solid var(--border); object-fit: cover; display: block; transition: border-color 0.2s; }
-    .gallery img:hover { border-color: var(--blue); }
-    .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start; }
-    .prose h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text); font-weight: 500; margin: 2rem 0 0.8rem; }
-    .prose h2:first-child { margin-top: 0; }
-    .prose p { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 1rem; }
-    .prose ul { list-style: none; padding: 0; margin-bottom: 1rem; }
-    .prose ul li { font-size: 14px; color: var(--text-muted); line-height: 1.8; padding-left: 1rem; position: relative; margin-bottom: 4px; }
-    .prose ul li::before { content: '//'; position: absolute; left: 0; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 10px; top: 4px; }
-    .arch-layers { display: flex; flex-direction: column; gap: 6px; margin: 1rem 0; }
-    .arch-layer { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 6px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
-    .layer-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue); background: #0a0a2a; border: 0.5px solid #2a2a5a; border-radius: 3px; padding: 2px 7px; flex-shrink: 0; }
-    .layer-name { font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 1px; }
-    .layer-detail { font-size: 11px; color: var(--text-muted); }
+    .page-hero { background: var(--navy); padding: 3.5rem 0 2.5rem; position: relative; overflow: hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px); background-size:30px 30px; }
+    .accent-bar { position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--blue-eng); }
+    .page-hero-inner { position:relative; z-index:1; }
+    .content-grid { display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
     .sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
-    .sidebar-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 12px; }
-    .sidebar-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--blue); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-    .stack { display: flex; flex-wrap: wrap; gap: 5px; }
-    .stag { background: #0a0a18; border-radius: 2px; padding: 3px 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); border: 0.5px solid #1a1a30; }
-    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .metric-item { background: #0a0a2a; border: 0.5px solid #1e2040; border-radius: 5px; padding: 7px 9px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); }
-    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } .sidebar { position: static; } .gallery { grid-template-columns: 1fr; } }
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery img:first-child { grid-column: span 1; aspect-ratio: 16/9; }
+    .arch-layers { display: flex; flex-direction: column; gap: 6px; margin: 1rem 0; }
+    .arch-layer { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 0 4px 4px 0; padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
+    .arch-layer.blue { border-left-color: var(--blue-eng); }
+    .layer-num { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; color: var(--amber); background: var(--amber-light); border: 1px solid #e8d090; border-radius: 2px; padding: 2px 8px; flex-shrink: 0; letter-spacing: 0.5px; }
+    .layer-num.blue { color: var(--blue-eng); background: var(--blue-light); border-color: #b5d4f4; }
+    .layer-name { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .layer-detail { font-size: 11px; color: var(--text-muted); }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .metric-item { background: var(--bg); border: 1px solid var(--border); border-radius: 2px; padding: 5px 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } .sidebar { position: static; } .gallery { grid-template-columns: 1fr; } .gallery img:first-child { grid-column: span 1; } }
   </style>
 </head>
 <body>
   <nav>
-    <a href="index.html" class="nav-logo">Anderson Uceta</a>
+    <a href="index.html" class="nav-logo">ANDERSON <span>UCETA</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
@@ -53,64 +39,58 @@
   </nav>
 
   <div class="page">
-    <section class="section">
-      <div class="container">
-        <a class="back-link" href="projects.html">← Back to projects</a>
-
-        <div style="margin-bottom:3rem">
-          <div class="proj-category"><span class="cat-dot"></span>Software · IIoT</div>
-          <h1 class="proj-title">Industrial Energy Monitoring System</h1>
-          <p class="proj-subtitle">A full-stack industrial IoT solution that reads electrical variables from Schneider energy meters via BACnet, stores historical data in MySQL, and presents it through a real-time web dashboard for operational visibility and energy analysis.</p>
-          <div class="meta-row">
-            <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">CMI</div></div>
-            <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2024</div></div>
-            <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">IIoT · Full-Stack · Energy</div></div>
-            <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Full-stack developer & system architect</div></div>
+    <section class="page-hero">
+      <div class="accent-bar"></div>
+      <div class="container page-hero-inner">
+        <a class="back-link" href="projects.html" style="color:var(--steel)">← Back to projects</a>
+        <div class="proj-header" style="border-bottom-color:var(--navy-dim)">
+          <div class="proj-category" style="color:#6aaff0"><div class="cat-bar" style="background:#6aaff0"></div>Software · IIoT</div>
+          <h1 class="proj-title" style="color:#fff">Industrial Energy Monitoring System</h1>
+          <p class="proj-subtitle" style="color:var(--steel)">Full-stack IIoT solution reading electrical variables from Schneider energy meters via BACnet, storing historical data in MySQL, and presenting it through a real-time web dashboard.</p>
+          <div class="meta-row" style="border-top-color:var(--navy-dim)">
+            <div><div class="meta-label" style="color:var(--steel-dark)">Client</div><div class="meta-value" style="color:var(--steel)">CMI</div></div>
+            <div><div class="meta-label" style="color:var(--steel-dark)">Year</div><div class="meta-value" style="color:var(--steel)">2024</div></div>
+            <div><div class="meta-label" style="color:var(--steel-dark)">Category</div><div class="meta-value" style="color:var(--steel)">IIoT · Full-Stack · Energy Management</div></div>
+            <div><div class="meta-label" style="color:var(--steel-dark)">Role</div><div class="meta-value" style="color:var(--steel)">Full-stack developer & system architect</div></div>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section class="light-section">
+      <div class="container">
         <div class="gallery">
-          <img src="assets/projects/energy-monitoring/img1.png" alt="Energy meter live readings dashboard">
-          <img src="assets/projects/energy-monitoring/img2.png" alt="Monthly consumption report by meter">
+          <img src="assets/projects/energy-monitoring/img1.png" alt="Live meter readings dashboard">
+          <img src="assets/projects/energy-monitoring/img2.png" alt="Monthly consumption report">
         </div>
 
         <div class="content-grid">
           <div class="prose">
-            <h2>// The Problem</h2>
+            <h2>The Problem</h2>
             <p>The plant had Schneider energy meters installed across different electrical panels, but there was no centralized way to read, store, or visualize that data. Energy consumption tracking was manual, fragmented, and provided no visibility into consumption patterns or anomalies across the facility.</p>
 
-            <h2>// The Solution</h2>
-            <p>I designed and built a complete 3-layer IIoT solution from the protocol layer to the user interface — covering data acquisition, storage, and visualization in a single integrated platform.</p>
+            <h2>The Solution</h2>
+            <p>I designed and built a complete 3-layer IIoT solution — covering data acquisition, storage, and visualization in a single integrated platform.</p>
 
-            <h2>// Architecture</h2>
+            <h2>Architecture</h2>
             <div class="arch-layers">
               <div class="arch-layer">
                 <div class="layer-num">L1</div>
-                <div>
-                  <div class="layer-name">Acquisition — Python + BACnet/IP</div>
-                  <div class="layer-detail">Python service reads Schneider meters over BACnet protocol, polling electrical variables at regular intervals</div>
-                </div>
+                <div><div class="layer-name">Acquisition — Python + BACnet/IP</div><div class="layer-detail">Python service polls Schneider meters over BACnet protocol, reading electrical variables at regular intervals with deadband filtering</div></div>
               </div>
-              <div class="arch-layer">
-                <div class="layer-num">L2</div>
-                <div>
-                  <div class="layer-name">Storage — MySQL</div>
-                  <div class="layer-detail">All readings are persisted in a structured MySQL database for historical analysis and trend reporting</div>
-                </div>
+              <div class="arch-layer blue">
+                <div class="layer-num blue">L2</div>
+                <div><div class="layer-name">Storage — MySQL</div><div class="layer-detail">All readings persisted in a structured MySQL database — current values, full historical log, and cumulative energy per section</div></div>
               </div>
-              <div class="arch-layer">
-                <div class="layer-num">L3</div>
-                <div>
-                  <div class="layer-name">Visualization — PHP + HTML + JS</div>
-                  <div class="layer-detail">Web dashboard queries the database and presents live readings, historical trends, and consumption reports</div>
-                </div>
+              <div class="arch-layer blue">
+                <div class="layer-num blue">L3</div>
+                <div><div class="layer-name">Visualization — PHP + HTML + JS</div><div class="layer-detail">Web dashboard queries the database and presents live readings, consumption summaries, and historical trends</div></div>
               </div>
             </div>
 
-            <h2>// Monitored Variables</h2>
-            <p>The system captures all key electrical parameters from each meter in real time:</p>
+            <h2>Monitored Variables</h2>
             <ul>
-              <li>Voltage (line-to-neutral and line-to-line)</li>
+              <li>Voltage — line-to-neutral and line-to-line (V)</li>
               <li>Current (A)</li>
               <li>Active power (kW), Reactive power (kVAR), Apparent power (kVA)</li>
               <li>Power factor</li>
@@ -118,57 +98,36 @@
               <li>Active energy consumption (kWh) — cumulative and by period</li>
             </ul>
 
-            <h2>// Dashboard Features</h2>
-            <ul>
-              <li>Real-time gauge and value display per meter</li>
-              <li>Monthly consumption summary by meter with totals</li>
-              <li>Historical trend charts for any variable</li>
-              <li>Scalable architecture — new meters can be added without code changes</li>
-            </ul>
-
-            <h2>// Results</h2>
+            <h2>Results</h2>
             <ul>
               <li>Centralized energy visibility across the entire facility</li>
               <li>Historical data available for energy efficiency analysis</li>
-              <li>Operational basis for detecting abnormal consumption patterns</li>
-              <li>Fully scalable to additional meters and facilities</li>
+              <li>Basis for detecting abnormal consumption patterns</li>
+              <li>Scalable architecture — new meters added without code changes</li>
+              <li>Open source Python script published on GitHub</li>
             </ul>
           </div>
 
           <div class="sidebar">
+            <div class="highlight-box"><div class="highlight-num">8</div><div class="highlight-label">Electrical variables monitored per meter</div></div>
             <div class="sidebar-card">
               <div class="sidebar-title">Tech Stack</div>
-              <div class="stack">
-                <span class="stag">Python</span>
-                <span class="stag">BACnet/IP</span>
-                <span class="stag">MySQL</span>
-                <span class="stag">PHP</span>
-                <span class="stag">HTML / CSS / JS</span>
-                <span class="stag">Schneider Meters</span>
-              </div>
+              <div class="tags"><span class="tag tag-amber">Python</span><span class="tag tag-amber">BACnet/IP</span><span class="tag tag-blue">MySQL</span><span class="tag tag-blue">PHP</span><span class="tag">HTML / CSS / JS</span><span class="tag">Schneider Meters</span></div>
             </div>
             <div class="sidebar-card">
               <div class="sidebar-title">Monitored Variables</div>
               <div class="metric-grid">
-                <div class="metric-item">kWh Energy</div>
-                <div class="metric-item">Voltage (V)</div>
-                <div class="metric-item">Current (A)</div>
-                <div class="metric-item">Active kW</div>
-                <div class="metric-item">Reactive kVAR</div>
-                <div class="metric-item">Power Factor</div>
-                <div class="metric-item">Frequency Hz</div>
-                <div class="metric-item">Apparent kVA</div>
+                <div class="metric-item">kWh</div><div class="metric-item">Voltage</div>
+                <div class="metric-item">Current</div><div class="metric-item">Active kW</div>
+                <div class="metric-item">Reactive</div><div class="metric-item">Power Factor</div>
+                <div class="metric-item">Frequency</div><div class="metric-item">Apparent</div>
               </div>
             </div>
             <div class="sidebar-card">
-              <div class="sidebar-title">Disciplines</div>
-              <div class="stack">
-                <span class="stag">IIoT</span>
-                <span class="stag">Full-Stack Dev</span>
-                <span class="stag">Industrial Protocols</span>
-                <span class="stag">Energy Management</span>
-                <span class="stag">Database Design</span>
-              </div>
+              <div class="sidebar-title">Open Source</div>
+              <a href="https://github.com/andersonuz/bacnet-energy-monitor" target="_blank" style="display:flex;align-items:center;gap:8px;text-decoration:none;margin-top:4px">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--blue-eng);letter-spacing:0.5px">→ View on GitHub</span>
+              </a>
             </div>
           </div>
         </div>
@@ -177,7 +136,7 @@
   </div>
 
   <footer>
-    <p>Built by Anderson Uceta · <a href="https://github.com/andersonuceta" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a></p>
+    <p>Anderson Uceta · <a href="https://github.com/andersonuz" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a> · Santo Domingo, DR</p>
   </footer>
   <script>function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}</script>
 </body>

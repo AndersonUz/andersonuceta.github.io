@@ -6,42 +6,18 @@
   <title>Biscuit Package Inspector · Anderson Uceta</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.15s; }
-    .back-link:hover { color: var(--blue); }
-    .proj-header { margin-bottom: 3rem; }
-    .proj-category { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .cat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-    .proj-title { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 500; color: var(--text); letter-spacing: -0.5px; margin-bottom: 1rem; }
-    .proj-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
-    .meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); }
-    .meta-item { }
-    .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
-    .meta-value { font-size: 13px; color: var(--text-muted); }
-    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 3rem; }
-    .gallery img { width: 100%; border-radius: 6px; border: 0.5px solid var(--border); object-fit: cover; aspect-ratio: 16/9; display: block; transition: border-color 0.2s; cursor: pointer; }
-    .gallery img:first-child { grid-column: span 2; aspect-ratio: 21/9; }
-    .gallery img:hover { border-color: var(--blue); }
-    .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start; }
-    .prose h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text); font-weight: 500; margin: 2rem 0 0.8rem; }
-    .prose h2:first-child { margin-top: 0; }
-    .prose p { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 1rem; }
-    .prose ul { list-style: none; padding: 0; margin-bottom: 1rem; }
-    .prose ul li { font-size: 14px; color: var(--text-muted); line-height: 1.8; padding-left: 1rem; position: relative; }
-    .prose ul li::before { content: '//'; position: absolute; left: 0; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 10px; top: 4px; }
+    .page-hero { background: var(--navy); padding: 3.5rem 0 2.5rem; position: relative; overflow: hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px); background-size:30px 30px; }
+    .accent-bar { position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--amber); }
+    .page-hero-inner { position:relative; z-index:1; }
+    .content-grid { display: grid; grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
     .sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
-    .sidebar-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 12px; }
-    .sidebar-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--blue); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-    .stack { display: flex; flex-wrap: wrap; gap: 5px; }
-    .stag { background: #0a0a18; border-radius: 2px; padding: 3px 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); border: 0.5px solid #1a1a30; }
-    .highlight-box { background: #0a1f17; border: 0.5px solid #1a4a35; border-radius: 8px; padding: 1.2rem; margin-bottom: 12px; }
-    .highlight-num { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 500; color: var(--green); line-height: 1; margin-bottom: 4px; }
-    .highlight-label { font-size: 11px; color: #2a6a4a; letter-spacing: 0.5px; }
-    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } .gallery img:first-child { aspect-ratio: 16/9; } .sidebar { position: static; } }
+    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } .sidebar { position: static; } .gallery img:first-child { aspect-ratio: 16/9; } }
   </style>
 </head>
 <body>
   <nav>
-    <a href="index.html" class="nav-logo">Anderson Uceta</a>
+    <a href="index.html" class="nav-logo">ANDERSON <span>UCETA</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
@@ -52,46 +28,50 @@
   </nav>
 
   <div class="page">
-    <section class="section">
-      <div class="container">
-        <a class="back-link" href="projects.html">← Back to projects</a>
-
-        <div class="proj-header">
-          <div class="proj-category"><span class="cat-dot"></span>Industrial · Machine Vision</div>
-          <h1 class="proj-title">Biscuit Package Inspector</h1>
-          <p class="proj-subtitle">Automated dual-inspection system that reduces secondary packaging defects by 99% through computer vision and weight verification on a live production line.</p>
-          <div class="meta-row">
-            <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">CMI</div></div>
-            <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2024</div></div>
-            <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">Industrial Automation · Machine Vision</div></div>
-            <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Automation Engineer</div></div>
+    <section class="page-hero">
+      <div class="accent-bar"></div>
+      <div class="container page-hero-inner">
+        <a class="back-link" href="projects.html" style="color:var(--steel)">← Back to projects</a>
+        <div class="proj-header" style="border-bottom-color:var(--navy-dim)">
+          <div class="proj-category" style="color:var(--amber)"><div class="cat-bar"></div>Industrial · Machine Vision</div>
+          <h1 class="proj-title" style="color:#fff">Biscuit Package Inspector</h1>
+          <p class="proj-subtitle" style="color:var(--steel)">Automated dual-inspection system that reduces secondary packaging defects by 99% through computer vision and weight verification on a live production line.</p>
+          <div class="meta-row" style="border-top-color:var(--navy-dim)">
+            <div><div class="meta-label" style="color:var(--steel-dark)">Client</div><div class="meta-value" style="color:var(--steel)">CMI</div></div>
+            <div><div class="meta-label" style="color:var(--steel-dark)">Year</div><div class="meta-value" style="color:var(--steel)">2024</div></div>
+            <div><div class="meta-label" style="color:var(--steel-dark)">Category</div><div class="meta-value" style="color:var(--steel)">Industrial Automation · Machine Vision</div></div>
+            <div><div class="meta-label" style="color:var(--steel-dark)">Role</div><div class="meta-value" style="color:var(--steel)">Automation Engineer</div></div>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section class="light-section">
+      <div class="container">
         <div class="gallery">
           <img src="assets/projects/biscuit-inspector/img4.png" alt="Full system overview">
-          <img src="assets/projects/biscuit-inspector/img1.png" alt="HMI and conveyor detail">
-          <img src="assets/projects/biscuit-inspector/img2.png" alt="Vision system and hood">
-          <img src="assets/projects/biscuit-inspector/img3.png" alt="Inspection station close-up">
+          <img src="assets/projects/biscuit-inspector/img1.png" alt="HMI and conveyor">
+          <img src="assets/projects/biscuit-inspector/img2.png" alt="Vision hood">
+          <img src="assets/projects/biscuit-inspector/img3.png" alt="Inspection station">
         </div>
 
         <div class="content-grid">
           <div class="prose">
-            <h2>// The Problem</h2>
+            <h2>The Problem</h2>
             <p>The production line was experiencing a significant rate of incorrectly packaged biscuit products reaching secondary packaging — products with wrong piece counts or faulty seals were making it through undetected, causing waste, rework, and customer quality issues.</p>
 
-            <h2>// The Solution</h2>
+            <h2>The Solution</h2>
             <p>I designed and implemented an automated dual-inspection station integrated directly into the production line. The system performs two independent inspections on every package before it advances:</p>
             <ul>
               <li>Weight inspection via check weigher to verify the correct number of biscuit pieces per package</li>
               <li>Vision inspection using a Cognex InSight 2800 camera to detect seal integrity and identify packages stuck together or improperly closed</li>
             </ul>
-            <p>The Cognex camera was configured with a custom detection model trained to identify packaging defects. It communicates directly with a Siemens S7-1500 PLC, which controls pneumatic rejection cylinders that physically eject non-conforming packages from the line — all in real time.</p>
+            <p>The Cognex camera was configured with a custom detection model. It communicates directly with a Siemens S7-1500 PLC, which controls pneumatic rejection cylinders that physically eject non-conforming packages from the line in real time.</p>
 
-            <h2>// Safety</h2>
+            <h2>Safety</h2>
             <p>The station is equipped with LED safety light curtains on all access points, ensuring operator safety during line operation. The PLC controls all safety interlocks in compliance with plant safety standards.</p>
 
-            <h2>// Results</h2>
+            <h2>Results</h2>
             <ul>
               <li>99% reduction in defective packages reaching secondary packaging</li>
               <li>Automated rejection with zero manual intervention required</li>
@@ -101,43 +81,24 @@
           </div>
 
           <div class="sidebar">
-            <div class="highlight-box">
-              <div class="highlight-num">99%</div>
-              <div class="highlight-label">Reduction in packaging defects</div>
-            </div>
-            <div class="highlight-box">
-              <div class="highlight-num">2</div>
-              <div class="highlight-label">Independent inspection systems</div>
-            </div>
+            <div class="highlight-box"><div class="highlight-num">99%</div><div class="highlight-label">Reduction in packaging defects</div></div>
+            <div class="highlight-box"><div class="highlight-num">2</div><div class="highlight-label">Independent inspection systems</div></div>
             <div class="sidebar-card">
               <div class="sidebar-title">Tech Stack</div>
-              <div class="stack">
-                <span class="stag">Cognex InSight 2800</span>
-                <span class="stag">Siemens S7-1500</span>
-                <span class="stag">Check Weigher</span>
-                <span class="stag">Pneumatic Actuators</span>
-                <span class="stag">Safety Light Curtains</span>
-                <span class="stag">TIA Portal</span>
-              </div>
+              <div class="tags"><span class="tag tag-amber">Cognex InSight 2800</span><span class="tag tag-amber">Siemens S7-1500</span><span class="tag">Check Weigher</span><span class="tag">Pneumatic Actuators</span><span class="tag">Safety Light Curtains</span><span class="tag">TIA Portal</span></div>
             </div>
             <div class="sidebar-card">
               <div class="sidebar-title">Disciplines</div>
-              <div class="stack">
-                <span class="stag">Machine Vision</span>
-                <span class="stag">PLC Programming</span>
-                <span class="stag">Mechatronics</span>
-                <span class="stag">Safety Systems</span>
-              </div>
+              <div class="tags"><span class="tag">Machine Vision</span><span class="tag">PLC Programming</span><span class="tag">Mechatronics</span><span class="tag">Safety Systems</span></div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   </div>
 
   <footer>
-    <p>Built by Anderson Uceta · <a href="https://github.com/andersonuceta" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a></p>
+    <p>Anderson Uceta · <a href="https://github.com/andersonuz" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a> · Santo Domingo, DR</p>
   </footer>
   <script>function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}</script>
 </body>

@@ -4,275 +4,140 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About · Anderson Uceta</title>
-  <meta name="description" content="Mechatronics Engineer with 7+ years in industrial automation and software development.">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
+    .page-hero { background: var(--navy); padding: 4rem 0 3rem; position: relative; overflow: hidden; }
+    .page-hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px); background-size:30px 30px; }
+    .page-hero .accent-bar { position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--amber); }
+    .page-hero-inner { position:relative; z-index:1; }
 
-    .about-text p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.9;
-      margin-bottom: 1.2rem;
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr 260px; gap: 3rem; align-items: start; }
+    .about-text p { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 1.1rem; }
 
-    .stats-col { display: flex; flex-direction: column; gap: 10px; }
+    .stat-cards { display: flex; flex-direction: column; gap: 8px; }
+    .stat-card { background: var(--navy); border-radius: 4px; padding: 1rem 1.2rem; }
+    .stat-card .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--amber); line-height: 1; margin-bottom: 4px; }
+    .stat-card .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 600; color: var(--steel-dark); letter-spacing: 1px; text-transform: uppercase; }
 
-    .stat-card {
-      background: var(--bg-card);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-    }
-
-    .stat-card .stat-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--blue);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .stat-card .stat-label {
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    /* Timeline */
-    .timeline { position: relative; padding-left: 1.5rem; }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 8px; bottom: 8px;
-      width: 0.5px;
-      background: var(--border2);
-    }
-
-    .tl-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
-
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -1.56rem; top: 8px;
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1.5px solid var(--blue);
-    }
-
-    .tl-item.current::before { background: var(--blue); }
-
-    .tl-period {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .tl-role {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .tl-company {
-      font-size: 13px;
-      color: var(--blue);
-      margin-bottom: 6px;
-    }
-
-    .tl-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* Education */
-    .edu-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .edu-card {
-      background: var(--bg-card);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .edu-degree { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
-    .edu-school { font-size: 12px; color: var(--blue); }
-    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); white-space: nowrap; }
-
-    /* Certs */
+    .edu-list { display: flex; flex-direction: column; gap: 8px; }
     .cert-list { display: flex; flex-direction: column; gap: 8px; }
 
-    .cert-item {
-      background: var(--bg-card);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 0.9rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-    .cert-name { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-
-    /* CV download */
-    .cv-block {
-      background: var(--bg-card);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .cv-block p { font-size: 14px; color: var(--text-muted); }
-
-    .cv-btns { display: flex; gap: 8px; }
+    .tecno-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; }
+    .tecno-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .tecno-logo { width: 56px; height: 56px; border-radius: 8px; border: 1px solid var(--border); object-fit: cover; }
+    .tecno-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .tecno-slogan { font-size: 12px; color: var(--amber); font-style: italic; }
+    .tecno-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; color: var(--text-dim); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+    .tecno-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem; }
+    .tecno-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .tecno-img-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 4px; border: 1px solid var(--border); }
 
     @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .edu-card { flex-direction: column; align-items: flex-start; gap: 4px; }
-      .cv-block { flex-direction: column; }
+      .about-grid, .tecno-grid { grid-template-columns: 1fr; }
+      .stat-cards { flex-direction: row; flex-wrap: wrap; }
+      .stat-card { flex: 1; min-width: 120px; }
     }
   </style>
 </head>
 <body>
-
   <nav>
-    <a href="index.html" class="nav-logo">Anderson Uceta</a>
+    <a href="index.html" class="nav-logo">ANDERSON <span>UCETA</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav-toggle" onclick="toggleNav()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></div>
   </nav>
 
   <div class="page">
 
+    <section class="page-hero">
+      <div class="accent-bar"></div>
+      <div class="container page-hero-inner">
+        <div class="section-header" style="margin-bottom:0.5rem">
+          <div class="section-eyebrow">The engineer behind the work</div>
+          <div class="section-rule" style="background:var(--navy-dim)"></div>
+        </div>
+        <h1 class="section-title" style="color:#fff;margin-bottom:0">About Me</h1>
+      </div>
+    </section>
+
     <!-- BIO -->
-    <section class="section">
+    <section class="light-section">
       <div class="container">
-        <div class="eyebrow">// about</div>
-        <h1 class="section-title">About Me</h1>
         <div class="about-grid">
           <div class="about-text">
-            <p>I'm a Mechatronics Engineer with 7+ years of experience at the intersection of industrial automation and software development. My background spans PLC programming, SCADA systems, and industrial instrumentation — combined with a growing skill set in Python, data science, and AI/ML.</p>
-            <p>Currently, I lead automation initiatives across multiple production facilities at CMI, coordinating cross-functional teams in Central America and the Caribbean. I'm passionate about Industry 4.0 — connecting physical systems with intelligent software to drive real operational impact.</p>
-            <p>Outside of work, I'm continuously learning: building data pipelines, exploring machine learning, and developing software projects that bridge my industrial background with modern engineering tools.</p>
+            <p>I'm a Mechatronics Engineer with 7+ years of experience at the intersection of industrial automation and modern software. My foundation is the factory floor — PLC programming, SCADA systems, instrumentation, and commissioning. That's where I started, and it remains my core.</p>
+            <p>Over time I've deliberately expanded that foundation to include software: Python pipelines for industrial data, web-based monitoring dashboards, machine learning applications for predictive maintenance, and low-code platforms that digitize manual production processes. I see the OT/IT boundary not as a barrier, but as the most interesting space to operate in.</p>
+            <p>Currently I lead automation initiatives across multiple manufacturing facilities at CMI, coordinating cross-functional teams across Central America and the Caribbean. I'm passionate about Industry 4.0 — connecting physical systems with intelligent software to drive real operational results.</p>
           </div>
-          <div class="stats-col">
-            <div class="stat-card">
-              <div class="stat-num">7+</div>
-              <div class="stat-label">Years of experience</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">3</div>
-              <div class="stat-label">Mechatronics credentials</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">CR · GT · DO</div>
-              <div class="stat-label">Countries worked in</div>
-            </div>
+          <div class="stat-cards">
+            <div class="stat-card"><div class="stat-num">7+</div><div class="stat-label">Years of experience</div></div>
+            <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Engineering credentials</div></div>
+            <div class="stat-card"><div class="stat-num">CR · GT · DO</div><div class="stat-label">Countries worked in</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TIMELINE -->
-    <section class="section">
+    <!-- EXPERIENCE -->
+    <section class="light-section">
       <div class="container">
-        <div class="eyebrow">// experience</div>
-        <h2 class="section-title">Work History</h2>
+        <div class="section-header">
+          <div class="section-eyebrow">Work history</div>
+          <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Experience</h2>
         <div class="timeline">
-
           <div class="tl-item current">
-            <div class="tl-period">2023 – PRESENT</div>
+            <div class="tl-period">2023 – Present</div>
             <div class="tl-role">Industrial Automation Engineer / Applications Coordinator</div>
             <div class="tl-company">CMI – Centroamérica y el Caribe · Hybrid / Regional</div>
             <div class="tl-desc">Lead automation initiatives across multiple production facilities. Design PLC-based control systems, architect SCADA/data integrations, and develop Power BI dashboards to support data-driven operations. Drive Industry 4.0 digitization projects connecting OT and IT layers.</div>
           </div>
-
           <div class="tl-item">
             <div class="tl-period">2020 – 2023</div>
             <div class="tl-role">Educational Robotics Coordinator</div>
             <div class="tl-company">Colegio Calasanz · Santo Domingo, DR</div>
-            <div class="tl-desc">Designed and delivered robotics and automation curricula covering industrial control fundamentals, PLC logic, and programming. Introduced students to engineering problem-solving through project-based learning.</div>
+            <div class="tl-desc">Designed and delivered robotics and automation curricula covering industrial control fundamentals, PLC logic, and programming through hands-on project-based learning.</div>
           </div>
-
           <div class="tl-item">
             <div class="tl-period">2020</div>
             <div class="tl-role">STEAM Educator (Automation &amp; Robotics)</div>
             <div class="tl-company">IGLOBAL / Ministerio de Educación · Dominican Republic</div>
             <div class="tl-desc">Supported national STEAM initiatives through teacher training and technical workshops on robotics and automation fundamentals.</div>
           </div>
-
           <div class="tl-item">
             <div class="tl-period">2019 – 2020</div>
             <div class="tl-role">Maintenance Technician</div>
             <div class="tl-company">B. Braun Dominicana · Santo Domingo, DR</div>
             <div class="tl-desc">Designed and implemented an inline tubing cutter machine (V1921) — full project cycle from concept to commissioning in a regulated medical device environment. Performed preventive and corrective maintenance ensuring production continuity.</div>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- EDUCATION -->
-    <section class="section">
+    <section class="light-section">
       <div class="container">
-        <div class="eyebrow">// education</div>
+        <div class="section-header">
+          <div class="section-eyebrow">Academic background</div>
+          <div class="section-rule"></div>
+        </div>
         <h2 class="section-title">Education</h2>
-        <div class="edu-grid">
+        <div class="edu-list">
           <div class="edu-card">
-            <div>
-              <div class="edu-degree">B.Eng. in Mechatronics Engineering</div>
-              <div class="edu-school">INTEC – Instituto Tecnológico de Santo Domingo</div>
-            </div>
+            <div><div class="edu-degree">B.Eng. in Mechatronics Engineering</div><div class="edu-school">INTEC – Instituto Tecnológico de Santo Domingo</div></div>
             <div class="edu-period">2021 – 2025</div>
           </div>
           <div class="edu-card">
-            <div>
-              <div class="edu-degree">Associate Degree in Mechatronics</div>
-              <div class="edu-school">ITLA – Instituto Tecnológico de Las Américas</div>
-            </div>
+            <div><div class="edu-degree">Associate Degree in Mechatronics</div><div class="edu-school">ITLA – Instituto Tecnológico de Las Américas</div></div>
             <div class="edu-period">2017 – 2019</div>
           </div>
           <div class="edu-card">
-            <div>
-              <div class="edu-degree">Technical Baccalaureate in Mechatronics</div>
-              <div class="edu-school">Secondary technical education · Industrial automation fundamentals</div>
-            </div>
+            <div><div class="edu-degree">Technical Baccalaureate in Mechatronics</div><div class="edu-school">Secondary technical education · Industrial automation fundamentals</div></div>
             <div class="edu-period">–</div>
           </div>
         </div>
@@ -280,67 +145,61 @@
     </section>
 
     <!-- CERTIFICATIONS -->
-    <section class="section">
+    <section class="light-section">
       <div class="container">
-        <div class="eyebrow">// certifications</div>
-        <h2 class="section-title">Continuous Learning</h2>
+        <div class="section-header">
+          <div class="section-eyebrow">Continuous learning</div>
+          <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Certifications</h2>
         <div class="cert-list">
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div class="cert-name">FreeCodeCamp – Responsive Web Design, JavaScript Algorithms &amp; Data Structures, Data Analysis with Python</div>
-          </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div class="cert-name">Microsoft Learn – Python, C#, Power Apps, Power Automate</div>
-          </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div class="cert-name">Data Science &amp; Machine Learning – scikit-learn, pandas, numpy (self-directed, 2024–2025)</div>
-          </div>
-          <div class="cert-item">
-            <div class="cert-dot"></div>
-            <div class="cert-name">Industrial Automation &amp; PLC Programming – ongoing professional development</div>
-          </div>
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">FreeCodeCamp – Responsive Web Design, JavaScript Algorithms &amp; Data Structures, Data Analysis with Python</div></div>
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Microsoft Learn – Python, C#, Power Apps, Power Automate</div></div>
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Data Science &amp; Machine Learning – scikit-learn, pandas, numpy (self-directed, 2024–2025)</div></div>
+          <div class="cert-item"><div class="cert-dot"></div><div class="cert-name">Industrial Automation &amp; PLC Programming – ongoing professional development</div></div>
         </div>
       </div>
     </section>
 
     <!-- TECNO-MEC -->
-    <section class="section">
+    <section class="light-section">
       <div class="container">
-        <div class="eyebrow">// beyond engineering</div>
+        <div class="section-header">
+          <div class="section-eyebrow">Beyond engineering</div>
+          <div class="section-rule"></div>
+        </div>
         <h2 class="section-title">Tecno-Mec Academy</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center">
+        <div class="tecno-grid">
           <div>
-            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem">
-              <img src="assets/tecno-mec/logo.png" alt="Tecno-Mec logo" style="width:60px;height:60px;border-radius:10px;border:0.5px solid var(--border);object-fit:cover">
+            <div class="tecno-header">
+              <img class="tecno-logo" src="assets/tecno-mec/logo.png" alt="Tecno-Mec logo">
               <div>
-                <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:2px">Tecno-Mec Academy</div>
-                <div style="font-size:12px;color:var(--blue);font-style:italic">"Tecnología para la vida"</div>
-                <div style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;margin-top:2px">Santo Domingo, DR · 2020–2023</div>
+                <div class="tecno-name">Tecno-Mec Academy</div>
+                <div class="tecno-slogan">"Tecnología para la vida"</div>
+                <div class="tecno-meta">Santo Domingo, DR · 2020–2023</div>
               </div>
             </div>
-            <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:1.2rem">Educational robotics and technology academy I founded to make engineering accessible to children through hands-on project-based learning. Students built robots, programmed in Scratch, designed in 3D, and explored virtual reality.</p>
-            <a class="btn btn-ghost" href="tecno-mec.html" style="display:inline-flex">Learn more →</a>
+            <p class="tecno-desc">Educational robotics and technology academy I founded to make engineering accessible to children through hands-on project-based learning. Students built robots, programmed in Scratch, designed in 3D, and explored virtual reality — all before high school.</p>
+            <a class="btn btn-ghost" href="tecno-mec.html">Learn more →</a>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <img src="assets/tecno-mec/img2.png" alt="Student building robot" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border)">
-            <img src="assets/tecno-mec/img3.png" alt="Hands-on robot assembly" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border)">
-            <img src="assets/tecno-mec/img1.png" alt="Student with VR headset" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border)">
-            <img src="assets/tecno-mec/img4.png" alt="Students coding" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border)">
+          <div class="tecno-img-grid">
+            <img src="assets/tecno-mec/img2.png" alt="Student building robot">
+            <img src="assets/tecno-mec/img3.png" alt="Robot assembly">
+            <img src="assets/tecno-mec/img1.png" alt="VR experience">
+            <img src="assets/tecno-mec/img4.png" alt="Students coding">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CV DOWNLOAD -->
-    <section class="section">
+    <!-- CV -->
+    <section class="light-section">
       <div class="container">
         <div class="cv-block">
-          <p>Want the full picture? Download my resume in English or Spanish.</p>
+          <p>Want the full picture? Download my resume.</p>
           <div class="cv-btns">
             <a class="btn btn-primary" href="assets/cv_anderson_uceta_EN.pdf" download>CV (English) ↓</a>
-            <a class="btn btn-ghost" href="assets/cv_anderson_uceta_ES.pdf" download>CV (Español) ↓</a>
+            <a class="btn btn-ghost-light" href="assets/cv_anderson_uceta_ES.pdf" download>CV (Español) ↓</a>
           </div>
         </div>
       </div>
@@ -349,13 +208,8 @@
   </div>
 
   <footer>
-    <p>Built by Anderson Uceta · <a href="https://github.com/andersonuceta" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a></p>
+    <p>Anderson Uceta · <a href="https://github.com/andersonuz" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/anderson-joiada-uceta-b%C3%A1ez-691041145/" target="_blank">LinkedIn</a> · Santo Domingo, DR</p>
   </footer>
-
-  <script>
-    function toggleNav() {
-      document.getElementById('navLinks').classList.toggle('open');
-    }
-  </script>
+  <script>function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}</script>
 </body>
 </html>
